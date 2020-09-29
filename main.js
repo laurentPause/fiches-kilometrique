@@ -1,6 +1,6 @@
 const electron = require('electron');
 const app = require('./app');
- 
+
 let window;
  
 function createWindow() {

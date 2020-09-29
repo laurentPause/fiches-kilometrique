@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electromon ."
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,8 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-vue": "^5.15.1",
-    "install": "^0.13.0"
+    "install": "^0.13.0",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
   }
 }

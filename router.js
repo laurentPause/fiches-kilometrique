@@ -12,7 +12,9 @@ const ejsLayout = require('express-ejs-layouts');
 const router = {
     isStarted: false
 };
- 
+
+const individus = require('./controllers/c_individus')
+
 function start(callback) {
     if (router.isStarted === false) {
         init(function () {
@@ -62,7 +64,7 @@ function loadRoutes(callback) {
     expressApp.get('/', function (req, res) {
         res.render('accueil/index', { layout: 'layout/defaut' });
     });
- 
+    expressApp.get('/test', individus.add);
     if (typeof callback != 'undefined') {
         callback();
     }
