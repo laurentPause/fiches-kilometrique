@@ -26,4 +26,3 @@
 |Puissance Véhicule |Numbers|2|Véhicules |
 |Année Véhicule |Date|-|Véhicules |
 |Immatriculation Véhicule |String|15|Véhicules |
-|Immatriculation Véhicule |String|15|Véhicules |
