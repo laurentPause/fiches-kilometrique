@@ -4,6 +4,9 @@ const expressApp = express();
 const http = require('http').Server(expressApp);
  
 const path = require('path');
+
+/* Ajout de express-ejs-layouts */
+const ejsLayout = require('express-ejs-layouts');
  
 /* Initialisation des variables */
 const router = {
@@ -36,6 +39,9 @@ function init(callback) {
     /* On s'assure que le serveur n'est vraiment pas démarré */
     router.isStarted = false;
  
+    /* Ajout de express-ejs-layouts */
+    expressApp.use(ejsLayout);
+
     /* J'utilise ici EJS comme moteur de template */
     expressApp.set('view engine', 'ejs');
  
@@ -54,7 +60,7 @@ function init(callback) {
  
 function loadRoutes(callback) {
     expressApp.get('/', function (req, res) {
-        res.render('accueil/index');
+        res.render('accueil/index', { layout: 'layout/defaut' });
     });
  
     if (typeof callback != 'undefined') {

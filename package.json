@@ -10,11 +10,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "electron": "^10.1.2"
   },
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-vue": "^5.15.1",
     "install": "^0.13.0"
   }
 }

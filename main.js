@@ -8,7 +8,9 @@ function createWindow() {
     window = new electron.BrowserWindow({
         width: 800,
         height: 600,
-        frame: false
+        webPreferences: {
+            nodeIntegration: true
+          }
     });
  
     /* Si vous décommentez cette ligne, vous verrez la console de débug Chrome */
