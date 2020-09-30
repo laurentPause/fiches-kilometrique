@@ -1,8 +1,5 @@
 const axios = require('axios').default;
 
-
-
-
 async function add (event) {
     event.preventDefault();    
     try {
@@ -18,6 +15,7 @@ async function add (event) {
             fonction : fonction.value
         }
         console.log('add individu:', data);
+        const individu = await axios.post('/api/individus',data)
     } catch (error) {
         console.log('error add individu', error);
     }

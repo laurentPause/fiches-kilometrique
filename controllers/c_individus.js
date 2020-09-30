@@ -7,6 +7,7 @@ const Individus = require('../models/Individus');
 
 exports.add = async (req, res) => {
     try {
+        console.log('Individu add :',req.body)
         await Individus.sync()
         const individu = await Individus.create({
             nom: req.body.nom,
