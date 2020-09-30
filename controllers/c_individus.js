@@ -3,7 +3,7 @@ const {
     DataTypes
 } = require('sequelize');
 const sequelize = new Sequelize('sqlite::memory:');
-const Individus = require('../models/Individus')
+const Individus = require('../models/Individus');
 
 exports.add = async (req, res) => {
     await Individus.sync()
