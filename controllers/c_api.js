@@ -2,7 +2,10 @@ const {
     Sequelize,
     DataTypes
 } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './database.sqlite'
+});
 const Individus = require('../models/Individus');
 // const Deplacements = require('../models/Deplacements');
 // const Entites = require('../models/Entites');
@@ -31,19 +34,18 @@ exports.add = async (req, res) => {
 }
 
 exports.all = async (req, res) => {
+    console.log(req.params.model)
     try {
-        console.log('Individu add :',req.body)
-        await Individus.sync()
-        const individu = await Individus.create({
-            nom: req.body.nom,
-            prenom: req.body.prenom,
-            function: req.body.function            
-        });
+        const Models = setModel(req.params.model);
+        await Models.sync();
+        const results = await Models.findAll({ raw: true });
+        console.log(results);
         res.status(200).json({
             message: 'OK',
-            results: individu
+            results: results
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             message: 'KO',
             results: error

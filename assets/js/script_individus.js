@@ -1,5 +1,7 @@
 const axios = require('axios').default;
 
+all();
+
 async function add (event) {
     event.preventDefault();    
     try {
@@ -21,6 +23,18 @@ async function add (event) {
         const individu = await axios.post('/api/add',options)
     } catch (error) {
         console.log('error add individu', error);
-    }
-    
+    } 
 }
+
+async function all (){
+    try {
+        const options = {
+            model : 'Individus'
+        }
+        const individus = await axios.get('/api/all/'+ options.model);
+        console.log(individus)
+    } catch (error) {
+        console.log('error add individu', error);
+    } 
+}
+

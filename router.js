@@ -90,6 +90,7 @@ function loadRoutes(callback) {
 
     // api
     expressApp.post('/api/add', api.add);
+    expressApp.get('/api/all/:model', api.all);
     if (typeof callback != 'undefined') {
         callback();
     }
