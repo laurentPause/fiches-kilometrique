@@ -13,7 +13,7 @@ const router = {
     isStarted: false
 };
 
-const individus = require('./controllers/c_individus')
+const pages = require('./controllers/c_renders')
 
 function start(callback) {
     if (router.isStarted === false) {
@@ -64,7 +64,12 @@ function loadRoutes(callback) {
     expressApp.get('/', function (req, res) {
         res.render('accueil/index', { layout: 'layout/defaut' });
     });
-    expressApp.get('/test', individus.add);
+    expressApp.get('/individus', pages.individus);
+    expressApp.get('/entites', pages.entites);
+    expressApp.get('/deplacements', pages.deplacements);
+    expressApp.get('/fiches', pages.fiches);
+    expressApp.get('/types', pages.types);
+    expressApp.get('/vehicules', pages.vehicules);
     if (typeof callback != 'undefined') {
         callback();
     }
