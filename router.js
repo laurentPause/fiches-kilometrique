@@ -17,7 +17,6 @@ const router = {
 
 /** Controllers */
 const pages = require('./controllers/c_renders');
-const individus = require('./controllers/c_individus');
 const api = require('./controllers/c_api');
 
 /** Serveur */

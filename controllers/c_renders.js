@@ -1,9 +1,12 @@
+const Individus = require('../models/Individus');
 
 exports.individus = async (req, res) => {
     try {
+        const individus = await Individus.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
-            title: 'Individus'
+            title: 'Individus',
+            datatable: individus
         }
         res.render('individus',options )
     } catch (error) {
