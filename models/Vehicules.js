@@ -25,6 +25,6 @@ const Vehicules = sequelize.define('Vehicules', {
   },
 }, {
 });
-console.log(Vehicules === sequelize.models.User); 
+console.log(Vehicules === sequelize.models.Vehicules); 
 module.exports =  Vehicules;
 

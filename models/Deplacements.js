@@ -9,6 +9,6 @@ const Deplacements = sequelize.define('Deplacements', {
   }
 }, {
 });
-console.log(Deplacements === sequelize.models.User); 
+console.log(Deplacements === sequelize.models.Deplacements); 
 module.exports =  Deplacements;
 

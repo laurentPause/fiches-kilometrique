@@ -61,6 +61,6 @@ const Trajets = sequelize.define('Trajets', {
   },
 }, {
 });
-console.log(Trajets === sequelize.models.User); 
+console.log(Trajets === sequelize.models.Trajets); 
 module.exports =  Trajets;
 

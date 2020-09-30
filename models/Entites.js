@@ -17,6 +17,6 @@ const Entites = sequelize.define('Entites', {
   }
 }, {
 });
-console.log(Entites === sequelize.models.User); 
+console.log(Entites === sequelize.models.Entites); 
 module.exports =  Entites;
 

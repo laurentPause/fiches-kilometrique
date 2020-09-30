@@ -9,6 +9,6 @@ const Types = sequelize.define('Types', {
   }
 }, {
 });
-console.log(Types === sequelize.models.User); 
+console.log(Types === sequelize.models.Types); 
 module.exports =  Types;
 
