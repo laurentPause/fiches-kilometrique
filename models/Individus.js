@@ -11,7 +11,7 @@ const Individus = sequelize.define('Individus', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  function: {
+  fonction: {
     type: DataTypes.STRING
   }
 }, {

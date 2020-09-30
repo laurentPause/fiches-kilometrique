@@ -52,6 +52,8 @@ function init(callback) {
      
     /* views est défini comme notre dossier de vues par défaut */
     expressApp.set('views', path.join(__dirname, '/views/'));
+
+    expressApp.set("layout extractScripts", true)
  
     if (typeof callback != 'undefined') {
         callback();
