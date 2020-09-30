@@ -1,11 +1,3 @@
-const {
-    Sequelize,
-    DataTypes
-} = require('sequelize');
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './database.sqlite'
-});
 const Individus = require('../models/Individus');
 // const Deplacements = require('../models/Deplacements');
 // const Entites = require('../models/Entites');
