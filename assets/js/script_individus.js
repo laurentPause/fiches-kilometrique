@@ -7,15 +7,18 @@ async function add (event) {
             nom,
             prenom,
             fonction
-        } = document.individus
+        } = document.individus;
 
-        const data = {
-            nom : nom.value,
-            prenom : prenom.value,
-            fonction : fonction.value
+        const options = {
+            model : 'Individus',
+            data : {
+                nom : nom.value,
+                prenom : prenom.value,
+                fonction : fonction.value
+            }
         }
-        console.log('add individu:', data);
-        const individu = await axios.post('/api/individus',data)
+        console.log('add individu:', options);
+        const individu = await axios.post('/api/add',options)
     } catch (error) {
         console.log('error add individu', error);
     }

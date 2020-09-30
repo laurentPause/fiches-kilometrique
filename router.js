@@ -18,6 +18,7 @@ const router = {
 /** Controllers */
 const pages = require('./controllers/c_renders');
 const individus = require('./controllers/c_individus');
+const api = require('./controllers/c_api');
 
 /** Serveur */
 function start(callback) {
@@ -88,7 +89,7 @@ function loadRoutes(callback) {
     expressApp.get('/vehicules', pages.vehicules);
 
     // api
-    expressApp.post('/api/individus', individus.add);
+    expressApp.post('/api/add', api.add);
     if (typeof callback != 'undefined') {
         callback();
     }
