@@ -8,7 +8,7 @@
   <div class="card-header d-flex align-items-center">
     <h3 class="h4">
       <%= title %> 
-      <span class="ml-3 badge badge-success" role="button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></span>
+      <span class="ml-3 badge badge-success" role="button" onclick="modalShow( '<%= model %>','add','<%= title %>' )"><i class="fa fa-plus"></i></span>
     </h3>
   </div>
   <div class="card-body">
@@ -30,9 +30,9 @@
             <% }); %>
             <td>
               <div class="btn-group" role="group" aria-label="action-ligne">
-                <button type="button" class="btn btn-info "><i class="fa fa-eye"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-info" onclick="modalShow( '<%= model %>','view','<%= title %>' )"><i class="fa fa-eye"></i></button>
+                <button type="button" class="btn btn-warning" onclick="modalShow( '<%= model %>','edit','<%= title %>' )"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-danger" onclick="modalShow( '<%= model %>','delete','<%= title %>' )"><i class="fa fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -43,4 +43,6 @@
   </div>
 </div>
 
-<%- include('modals'); %>
+<%- include('modals', {model: model});  %>
+
+<script src="js/datatable.js"></script>
