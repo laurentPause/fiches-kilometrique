@@ -10,6 +10,10 @@ exports.individus = async (req, res) => {
             datatable: {
                 columns: ['id','nom','prenom','fonction'],
                 data: individus
+            },
+            form: {
+                fields: ['nom','prenom','fonction'],
+                name: 'individus'
             }
         }
         res.render('individus',options )

@@ -1,0 +1,19 @@
+<form id="formModal"  class="form-validate" name="<%= form.name %>" novalidate>
+    <!-- Form add -->
+    <% form.fields.forEach(function(element){ %>
+        <div class="form-group">
+            <input id="<%= form.name %>-<%= element %>" type="text" name="<%= element %>" required data-msg="<%= element %>"
+                class="input-material" placeholder="<%= element %>">
+            <label for="<%= form.name %>-<%= element %>" class="label-material"><%= element %></label>
+        </div>
+      <% }); %>
+    <!-- Form edit -->
+    <div id="test">
+        <%= pika  %> 
+    </div>
+</form>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+<!-- Form add and edit -->
+<button type="button" class="btn btn-primary" onclick="submit('<%= form.name %>', '<%= form.fields %>')">Ajouter</button>
+
+<script src="js/forms.js"></script>
