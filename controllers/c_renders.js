@@ -6,7 +6,10 @@ exports.individus = async (req, res) => {
         const options = { 
             layout: 'layout/defaut',
             title: 'Individus',
-            datatable: individus
+            datatable: {
+                columns: ['id','nom','prenom','fonction'],
+                data: individus
+            }
         }
         res.render('individus',options )
     } catch (error) {
