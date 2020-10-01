@@ -1,9 +1,10 @@
 const ejs = require('ejs');
 
-async function modalShow(model, type, title, body) {
+async function modalShow(model, type, title, formName) {
     try {
         $('#modalData').modal('show');
         const modalTitle = document.getElementById('modalLabel');
+        const formContent = document.getElementById('pika');
         switch (type) {
             case 'add':
                 modalTitle.innerHTML = 'Ajouter un(e) ' + title;
@@ -22,9 +23,7 @@ async function modalShow(model, type, title, body) {
                 modalTitle.innerHTML = 'Détails un(e) ' + title
                 break;
         }
-        const test = document.getElementById('pika');
-        const piks = 'Pikachu';
-        const html  = ejs.render('<% pika %>',{pika: piks} );
+        
         test.innerHTML = html
         
 
