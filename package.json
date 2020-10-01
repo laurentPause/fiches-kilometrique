@@ -22,6 +22,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-vue": "^5.15.1",
     "install": "^0.13.0",
+    "jquery": "^3.5.1",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
   }
