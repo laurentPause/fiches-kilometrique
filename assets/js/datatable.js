@@ -24,7 +24,7 @@ async function modalShow(model, type, title, formName) {
                 break;
         }
         
-        test.innerHTML = html
+        // test.innerHTML = html
         
 
     } catch (error) {
