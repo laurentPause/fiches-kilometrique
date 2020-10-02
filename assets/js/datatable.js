@@ -1,21 +1,20 @@
-const ejs = require('ejs');
 
-async function modalShow(model, type, title, formName) {
+async function modalShow(model, type, title) {
     try {
-        $('#modalData').modal('show');
-        const modalTitle = document.getElementById('modalLabel');
-        const formContent = document.getElementById('pika');
+        $('#modalData'+ type).modal('show');
+        const modalTitle = document.getElementById('modalLabel' + type);
+         modalTitle.innerHTML = 'Ajouter un(e) ' + title;
         switch (type) {
-            case 'add':
+            case 'Add':
                 modalTitle.innerHTML = 'Ajouter un(e) ' + title;
                 break;
-            case 'view':
+            case 'View':
                 modalTitle.innerHTML = 'Détails d\'un(e) ' + title
                 break;
-            case 'edit':
+            case 'Edit':
                 modalTitle.innerHTML = 'Modifier un(e) ' + title
                 break;
-            case 'delete':
+            case 'Delete':
                 modalTitle.innerHTML = 'Supprimer un(e) ' + title
                 break;
         
@@ -24,7 +23,6 @@ async function modalShow(model, type, title, formName) {
                 break;
         }
         
-        // test.innerHTML = html
         
 
     } catch (error) {

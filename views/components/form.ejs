@@ -1,5 +1,6 @@
 <form id="formModal"  class="form-validate" name="<%= form.name %>" >
     <!-- Form add -->
+    <% if(type == 'add') {%>
     <% form.fields.forEach(function(element){ %>
         <div class="form-group">
             <input id="<%= form.name %>-<%= element %>" type="text" name="<%= element %>" required data-msg="<%= element %>"
@@ -7,6 +8,7 @@
             <label for="<%= form.name %>-<%= element %>" class="label-material"><%= element %></label>
         </div>
       <% }); %>
+      <% } %>
 </form>
 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
 <!-- Form add and edit -->

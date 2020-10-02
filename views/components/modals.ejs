@@ -1,14 +1,66 @@
-<div class="modal fade" id="modalData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal ajouter -->
+<div class="modal fade" id="modalDataAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">Modal title</h5>
+          <h5 class="modal-title" id="modalLabelAdd">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div id="modalBody" class="modal-body">
-          <%- include('form',{form: form,model: model});  %>
+          <%- include('form',{form: form,model: model, type: 'add'});  %>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+<!-- Modal View -->
+<div class="modal fade" id="modalDataView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelView">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modalBody" class="modal-body">
+          <%- include('form',{form: form,model: model,type: 'view'});  %>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+  <!-- Modal modifier -->
+<div class="modal fade" id="modalDataEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelEdit">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modalBody" class="modal-body">
+          <%- include('form',{form: form,model: model,type: 'edit'});  %>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+  <!-- Modal delete -->
+<div class="modal fade" id="modalDataDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelDelete">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modalBody" class="modal-body">
+          <%- include('form',{form: form,model: model,type: 'delete'});  %>
         </div>
     
       </div>
