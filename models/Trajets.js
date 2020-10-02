@@ -1,7 +1,12 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const Entites = require('./Entites');
-const sequelize = new Sequelize('sqlite::memory:');
-
+const Individus = require('./Individus');
+const Vehicules = require('../models/Vehicules');
+const Deplacements = require('./Deplacements');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: '../database.db'
+});
 const Trajets = sequelize.define('Trajets', {
   // Model attributes are defined here
   jour: {

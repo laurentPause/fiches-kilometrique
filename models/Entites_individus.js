@@ -1,7 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const Entites = require('./Entites');
-const sequelize = new Sequelize('sqlite::memory:');
-
+const Individus = require('./Individus');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: '../database.db'
+});
 const Entites_individus = sequelize.define('Entites_individus', {
   // Model attributes are defined here
   total_km: {
@@ -21,7 +24,7 @@ const Entites_individus = sequelize.define('Entites_individus', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: Entites,
+        model: Individus,
         key:'id'
     }
   },

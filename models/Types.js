@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
-
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: '../database.db'
+});
 const Types = sequelize.define('Types', {
   // Model attributes are defined here
   libelle: {

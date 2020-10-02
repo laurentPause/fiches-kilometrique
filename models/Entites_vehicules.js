@@ -1,7 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const Entites = require('./Entites');
-const sequelize = new Sequelize('sqlite::memory:');
-
+const Vehicules = require('./Vehicules');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: '../database.db'
+});
 const Entites_vehicules = sequelize.define('Entites_vehicules', {
   // Model attributes are defined here
   total_km: {
@@ -21,7 +24,7 @@ const Entites_vehicules = sequelize.define('Entites_vehicules', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: Entites,
+        model: Vehicules,
         key:'id'
     }
   },

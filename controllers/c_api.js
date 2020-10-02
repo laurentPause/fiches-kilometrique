@@ -1,11 +1,11 @@
 const Individus = require('../models/Individus');
-// const Deplacements = require('../models/Deplacements');
-// const Entites = require('../models/Entites');
-// const Entites_individus = require('../models/Entites_individus');
-// const Entites_vehicules = require('../models/Entites_vehicules');
-// const Trajets = require('../models/Trajets');
-// const Types = require('../models/Types');
-// const Vehicules = require('../models/Vehicules');
+const Deplacements = require('../models/Deplacements');
+const Entites = require('../models/Entites');
+const Entites_individus = require('../models/Entites_individus');
+const Entites_vehicules = require('../models/Entites_vehicules');
+const Trajets = require('../models/Trajets');
+const Types = require('../models/Types');
+const Vehicules = require('../models/Vehicules');
 
 
 exports.add = async (req, res) => {

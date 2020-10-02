@@ -9,6 +9,7 @@ const Vehicules = require('../models/Vehicules');
 
 exports.individus = async (req, res) => {
     try {
+        await Individus.sync();
         const individus = await Individus.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -31,6 +32,7 @@ exports.individus = async (req, res) => {
 
 exports.entites = async (req, res) => {
     try {
+        await Entites.sync();
         const entites = await Entites.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -54,6 +56,7 @@ exports.entites = async (req, res) => {
 
 exports.deplacements = async (req, res) => {
     try {
+        await Deplacements.sync();
         const deplacements = await Deplacements.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -76,6 +79,7 @@ exports.deplacements = async (req, res) => {
 
 exports.fiches = async (req, res) => {
     try {
+        await Trajets.sync();
         const fiches = await Trajets.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -98,6 +102,7 @@ exports.fiches = async (req, res) => {
 
 exports.types = async (req, res) => {
     try {
+        await Types.sync();
         const types = await Types.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -120,6 +125,7 @@ exports.types = async (req, res) => {
 
 exports.vehicules = async (req, res) => {
     try {
+        await Vehicules.sync();
         const vehicules = await Vehicules.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
