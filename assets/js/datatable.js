@@ -1,14 +1,18 @@
+const ejs = require('ejs');
 
-async function modalShow(model, type, title) {
+async function modalShow(element, type, title, formName) {
     try {
         $('#modalData'+ type).modal('show');
         const modalTitle = document.getElementById('modalLabel' + type);
-         modalTitle.innerHTML = 'Ajouter un(e) ' + title;
+        const form = document.getElementById('formModal'+type+'-'+ formName);
+        modalTitle.innerHTML = 'Ajouter un(e) ' + title;
         switch (type) {
             case 'Add':
                 modalTitle.innerHTML = 'Ajouter un(e) ' + title;
                 break;
             case 'View':
+                console.log(form);
+                form.innerHTML = render(element,formName)
                 modalTitle.innerHTML = 'Détails d\'un(e) ' + title
                 break;
             case 'Edit':
@@ -23,9 +27,22 @@ async function modalShow(model, type, title) {
                 break;
         }
         
-        
-
     } catch (error) {
         console.log('Erreur', error);
     }
+}
+
+function render(element,formName) {
+    const obj = JSON.parse(element );
+    console.log('Object :', obj);
+    let div = '';
+    for (const property in obj) { 
+        div     += '<div class="form-group">';
+        div     += `  <input id="${formName}-${property} " type="text" name=" ${property} " value="${obj[property]} "`;
+        div     += `      class="input-material" placeholder="${property}" readonly>`;
+        div     += `  <label for="${formName}-${property}" class="label-material">${property}</label>`;
+        div     += '</div>';
+    }
+    console.log('div', div)
+    return div;
 }

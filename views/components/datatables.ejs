@@ -8,7 +8,7 @@
   <div class="card-header d-flex align-items-center">
     <h3 class="h4">
       <%= title %> 
-      <span class="ml-3 badge badge-success" role="button" onclick="modalShow( '<%= model %>','Add','<%= title %>' )"><i class="fa fa-plus"></i></span>
+      <span class="ml-3 badge badge-success" role="button" onclick="modalShow( '','Add','<%= title %>','<%= form.name %>' )"><i class="fa fa-plus"></i></span>
     </h3>
   </div>
   <div class="card-body">
@@ -24,15 +24,22 @@
         </thead>
         <tbody>
           <% datatable.data.forEach(function(element){ %>
+          <%
+            test = '{' ;
+            for (const key in element) {
+            test += '"' + key + '"' + ':' + ' "' + element[key] + '",';
+          } 
+            test += '"test": "test"}' ;
+          %>
           <tr>
             <% datatable.columns.forEach(function(column){ %>
             <td><%= `${element[column]}` %></td>
             <% }); %>
             <td>
               <div class="btn-group" role="group" aria-label="action-ligne">
-                <button type="button" class="btn btn-info" onclick="modalShow( '<%= model %>','View','<%= title %>' )"><i class="fa fa-eye"></i></button>
-                <button type="button" class="btn btn-warning" onclick="modalShow( '<%= model %>','Edit','<%= title %>' )"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-danger" onclick="modalShow( '<%= model %>','Delete','<%= title %>' )"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-info" onclick="modalShow( '<%= test %>','View','<%= title %>','<%= form.name %>' )"><i class="fa fa-eye"></i></button>
+                <button type="button" class="btn btn-warning" onclick="modalShow( element,'Edit','<%= title %>','<%= form.name %>' )"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-danger" onclick="modalShow( element,'Delete','<%= title %>','<%= form.name %>' )"><i class="fa fa-trash"></i></button>
               </div>
             </td>
           </tr>

@@ -9,7 +9,7 @@
           </button>
         </div>
         <div id="modalBody" class="modal-body">
-          <%- include('form',{form: form,model: model, type: 'add'});  %>
+          <%- include('form',{form: form,model: model, type: 'add',id: 'formModalAdd-'+ form.name});  %>
         </div>
     
       </div>
@@ -26,7 +26,7 @@
           </button>
         </div>
         <div id="modalBody" class="modal-body">
-          <%- include('form',{form: form,model: model,type: 'view'});  %>
+          <%- include('form',{form: form,model: model,type: 'view',id: 'formModalView-'+ form.name});  %>
         </div>
     
       </div>
@@ -43,7 +43,7 @@
           </button>
         </div>
         <div id="modalBody" class="modal-body">
-          <%- include('form',{form: form,model: model,type: 'edit'});  %>
+          <%- include('form',{form: form,model: model,type: 'edit',id: 'formModalEdit-'+ form.name});  %>
         </div>
     
       </div>
@@ -60,7 +60,7 @@
           </button>
         </div>
         <div id="modalBody" class="modal-body">
-          <%- include('form',{form: form,model: model,type: 'delete'});  %>
+          <%- include('form',{form: form,model: model,type: 'delete',id: 'formModalDelete-'+ form.name});  %>
         </div>
     
       </div>
