@@ -1,27 +1,45 @@
-<form class="form-validate" name="<%= form.name %>" >
+<form class="form-validate" name="<%= form.name + type %>">
     <!-- Form add -->
-    
+
     <% if(type == 'add') {%>
+    <% formFields = [] ; %> 
     <% form.fields.forEach(function(element){ %>
-        <div class="form-group">
-            <input id="<%= form.name %>-<%= element.name %>" type="<%= element.type %>" name="<%= element.name %>" required data-msg="<%= element.name %>"
-                class="input-material" placeholder="<%= element.name %>">
-            <label for="<%= form.name %>-<%= element.name %>" class="label-material"><%= element.name %></label>
-        </div>
+        <%
+            formFields.push(element.name)
+        %>
+    <% if(element.type == 'select') {%>
+    <div class="form-group">
+        <label for="<%= form.name %>-<%= element.name %>"><%= element.name %></label>
+        <select class="form-control" id="<%= form.name %>-<%= element.name %>" name="<%= element.name %>">
+            <% element.options.forEach(function(option){ %>
+                <option value="<%= option.id %>"><%= option.libelle %></option>
+            <% }); %>
+        </select>
+    </div>
+    <% } else{%>
+
+    <div class="form-group">
+        <input id="<%= form.name %>-<%= element.name %>" type="<%= element.type %>" name="<%= element.name %>" required
+            data-msg="<%= element.name %>" class="input-material" placeholder="<%= element.name %>">
+        <label for="<%= form.name %>-<%= element.name %>" class="label-material"><%= element.name %></label>
+    </div>
+    <% } %>
     <% }); }%>
 
-      <!-- Autre -->
-      <div id="<%= id %>">
+    <!-- Autre -->
+    <div id="<%= id %>">
 
     </div>
-    
+
 </form>
 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
 <!-- Form add and edit -->
 <% if(type == 'add') {%>
-<button type="button" class="btn btn-primary" onclick="add('<%= form.name %>', '<%= form.fields %>', '<%= model %>')">Ajouter</button>
+    
+<button type="button" class="btn btn-primary"
+    onclick="add('<%= form.name %>', '<%= formFields %>', '<%= model %>')">Ajouter</button>
 <% } else if(type == 'view') {%>
-<button type="button" class="btn btn-warning" >Modifier</button>
+<button type="button" class="btn btn-warning">Modifier</button>
 <% } %>
 
 <script src="js/forms.js"></script>

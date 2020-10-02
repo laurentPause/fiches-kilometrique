@@ -37,6 +37,8 @@ exports.individus = async (req, res) => {
 exports.entites = async (req, res) => {
     try {
         await Entites.sync();
+        await Types.sync()
+        const types = await Types.findAll({ raw: true });
         const entites = await Entites.findAll({ raw: true });
         const options = { 
             layout: 'layout/defaut',
@@ -47,7 +49,7 @@ exports.entites = async (req, res) => {
                 data: entites
             },
             form: {
-                fields: ['nom','type'],
+                fields: [{name:'nom',type:'text'},{name:'type',type:'select',options:types}],
                 name: 'entites'
             }
         }
@@ -117,7 +119,7 @@ exports.types = async (req, res) => {
                 data: types
             },
             form: {
-                fields: ['libelle'],
+                fields: [{name:'libelle', type:'text'}],
                 name: 'types'
             }
         }

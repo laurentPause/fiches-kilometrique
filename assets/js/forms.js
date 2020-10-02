@@ -2,16 +2,17 @@ const axios = require('axios').default;
 
 async function add (formName, fieldsString, model) {
     try {
-        const form = document[formName];
+        const form = document[formName+'add'];
         const fields = fieldsString.split(',');
         const options = {
             model : model,
             data : {}
         }
         fields.forEach((element) => {
-            options.data[element] = form[element]['value']
+           options.data[element] = form[element]['value'];
+
         });
-        const individu = await axios.post('/api/add',options)
+       const individu = await axios.post('/api/add',options)
     } catch (error) {
         console.log('error add individu', error);
     } 
