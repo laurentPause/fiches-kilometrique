@@ -1,7 +1,5 @@
 const axios = require('axios').default;
 
-all();
-
 async function add (event) {
     event.preventDefault();    
     try {
