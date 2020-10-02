@@ -20,7 +20,11 @@ exports.individus = async (req, res) => {
                 data: individus
             },
             form: {
-                fields: ['nom','prenom','fonction'],
+                fields: [
+                    {name:'nom',type:'text'},
+                    {name:'prenom',type:'text'},
+                    {name:'fonction',type:'text'}
+                ],
                 name: 'individus'
             }
         }

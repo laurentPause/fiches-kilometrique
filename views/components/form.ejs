@@ -4,9 +4,9 @@
     <% if(type == 'add') {%>
     <% form.fields.forEach(function(element){ %>
         <div class="form-group">
-            <input id="<%= form.name %>-<%= element %>" type="text" name="<%= element %>" required data-msg="<%= element %>"
-                class="input-material" placeholder="<%= element %>">
-            <label for="<%= form.name %>-<%= element %>" class="label-material"><%= element %></label>
+            <input id="<%= form.name %>-<%= element.name %>" type="<%= element.type %>" name="<%= element.name %>" required data-msg="<%= element.name %>"
+                class="input-material" placeholder="<%= element.name %>">
+            <label for="<%= form.name %>-<%= element.name %>" class="label-material"><%= element.name %></label>
         </div>
     <% }); }%>
 

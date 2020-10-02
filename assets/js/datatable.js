@@ -1,4 +1,4 @@
-const ejs = require('ejs');
+all();
 
 async function modalShow(element, type, title, formName) {
     try {
@@ -45,4 +45,17 @@ function render(element,formName) {
     }
     console.log('div', div)
     return div;
+}
+
+
+async function all (){
+    try {
+        const options = {
+            model : 'Individus'
+        }
+        const individus = await axios.get('/api/all/'+ options.model);
+        console.log(individus.data)
+    } catch (error) {
+        console.log('error add individu', error);
+    } 
 }

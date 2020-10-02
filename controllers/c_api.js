@@ -30,7 +30,7 @@ exports.all = async (req, res) => {
     try {
         const Models = setModel(req.params.model);
         await Models.sync();
-        const results = await Models.findAll({ raw: true });
+        const results = await Models.findAll();
         console.log(results);
         res.status(200).json({
             message: 'OK',
