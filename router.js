@@ -3,6 +3,8 @@ const express = require('express');
 const expressApp = express();
 const http = require('http').Server(expressApp);
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const expressVue = require("express-vue");
 
 
 const path = require('path');
@@ -13,6 +15,27 @@ const ejsLayout = require('express-ejs-layouts');
 /* Initialisation des variables */
 const router = {
     isStarted: false
+};
+console.log('__dirname!!!!!!!!!!!!!',__dirname);
+const vueOptions = {
+    rootPath: path.join('/'),
+    head: {
+        title: 'Hello this is a global title',
+        scripts: [
+            { src: 'https://example.com/script.js' },
+        ],
+        styles: [
+            { style: '/assets/rendered/style.css' }
+        ]
+    },
+    data: {
+        foo: true,
+        bar: 'yes',
+        qux: {
+            id: 123,
+            baz: 'anything you wish, you can have any kind of object in the data object, it will be global and on every route'
+        }
+    }
 };
 
 /** Controllers */
@@ -46,24 +69,28 @@ function init(callback) {
     /* On s'assure que le serveur n'est vraiment pas démarré */
     router.isStarted = false;
 
+    expressApp.use(morgan('dev'));
+
     expressApp.use(bodyParser.urlencoded({
         extended: true
     }));
     expressApp.use(bodyParser.json());
 
-    /* Ajout de express-ejs-layouts */
-    expressApp.use(ejsLayout);
+    // /* Ajout de express-ejs-layouts */
+    // expressApp.use(ejsLayout);
 
-    /* J'utilise ici EJS comme moteur de template */
-    expressApp.set('view engine', 'ejs');
+    // /* J'utilise ici EJS comme moteur de template */
+    // expressApp.set('view engine', 'ejs');
 
-    /* assets sera le répertoire où se trouverons nos fichiers côté client */
-    expressApp.use(express.static(path.join(__dirname, 'assets')));
+    // /* assets sera le répertoire où se trouverons nos fichiers côté client */
+    // expressApp.use(express.static(path.join(__dirname, 'assets')));
 
-    /* views est défini comme notre dossier de vues par défaut */
-    expressApp.set('views', path.join(__dirname, '/views/'));
+    // /* views est défini comme notre dossier de vues par défaut */
+    // expressApp.set('views', path.join(__dirname, '/views/'));
 
-    expressApp.set("layout extractScripts", true)
+    // expressApp.set("layout extractScripts", true)
+   
+    expressVue.use(expressApp, vueOptions);
 
     if (typeof callback != 'undefined') {
         callback();
@@ -73,23 +100,16 @@ function init(callback) {
 /* ROUTES */
 
 function loadRoutes(callback) {
-    expressApp.get('/', function (req, res) {
-        res.render('accueil/index', {
-            layout: 'layout/defaut'
-        });
+    expressVue.use(expressApp, vueOptions).then(() => {
+        expressApp.get('/',(req,res)=>{
+            const data = {
+                title: "Oh hi world!",
+            };
+            res.renderVue("test.vue", data);
+           })
     });
-
-    // render pages
-    expressApp.get('/individus', pages.individus);
-    expressApp.get('/entites', pages.entites);
-    expressApp.get('/deplacements', pages.deplacements);
-    expressApp.get('/fiches', pages.fiches);
-    expressApp.get('/types', pages.types);
-    expressApp.get('/vehicules', pages.vehicules);
-
-    // api
-    expressApp.post('/api/add', api.add);
-    expressApp.get('/api/all/:model', api.all);
+   
+   
     if (typeof callback != 'undefined') {
         callback();
     }
