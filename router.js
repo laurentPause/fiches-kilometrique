@@ -7,7 +7,10 @@ const morgan = require('morgan');
 const expressVue = require("express-vue");
 
 
-const path = require('path');
+// Routes
+const routes = require('./routes/routes');
+
+const vue = require('./config/vue');
 
 /* Ajout de express-ejs-layouts */
 const ejsLayout = require('express-ejs-layouts');
@@ -16,30 +19,9 @@ const ejsLayout = require('express-ejs-layouts');
 const router = {
     isStarted: false
 };
-const vueOptions = {
-    rootPath: path.join(__dirname , '../../views'),
-    head: {
-        title: 'Hello this is a global title',
-        scripts: [
-            { src: 'https://example.com/script.js' },
-        ],
-        styles: [
-            { style: '/assets/rendered/style.css' }
-        ]
-    },
-    data: {
-        foo: true,
-        bar: 'yes',
-        qux: {
-            id: 123,
-            baz: 'anything you wish, you can have any kind of object in the data object, it will be global and on every route'
-        }
-    }
-};
 
-/** Controllers */
-const pages = require('./controllers/c_renders');
-const api = require('./controllers/c_api');
+
+
 
 /** Serveur */
 function start(callback) {
@@ -68,8 +50,7 @@ function init(callback) {
     /* On s'assure que le serveur n'est vraiment pas démarré */
     router.isStarted = false;
     
-    const expressVueMiddleware = expressVue.init();
-    expressApp.use(expressVueMiddleware);
+    vue.config(expressApp,expressVue);
 
     expressApp.use(morgan('dev'));
 
@@ -101,22 +82,7 @@ function init(callback) {
 /* ROUTES */
 
 function loadRoutes(callback) {
-    expressApp.get('/', (req, res, next) => {
-        const data= {
-            otherData: 'Something Else' 
-        };
-        req.vueOptions= {
-            head: {
-                title: 'Page Title',
-                metas: [
-                    { property:'og:title', content: 'Page Title'},
-                    { name:'twitter:title', content: 'Page Title'},
-                ]
-            }    
-        }
-        res.renderVue('../../views/main.vue', data, req.vueOptions);
-    })
-   
+    routes.routes(expressApp);
    
     if (typeof callback != 'undefined') {
         callback();
