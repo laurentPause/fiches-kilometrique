@@ -12,7 +12,8 @@ exports.routes = (app) => {
                     { property:'og:title', content: 'Page Title'},
                     { name:'twitter:title', content: 'Page Title'},
                 ]
-            }    
+            },
+            layout: 'layout/dashboard/header.vue'   
         }
         res.renderVue(`views/main.vue`, data, req.vueOptions);
     })

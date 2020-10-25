@@ -3,7 +3,6 @@ const path = require('path');
 
 const vueOptions = {
     rootPath: path.join(__dirname, '../'),
-    vueVersion: "2.3.4",
     template: {
         html: {
             start: '<!DOCTYPE html><html>',
@@ -21,11 +20,19 @@ const vueOptions = {
     head: {
         title: 'Fiches kilométrique',
         scripts: [
-            { src: 'https://example.com/script.js' },
+            // { src: '/templates/bootstrap4material/vendor/jquery/jquery.min.js' },
+            // { src: '/templates/bootstrap4material/vendor/popper.js/umd/popper.min.js' },
+            // { src: '/templates/bootstrap4material/vendor/bootstrap/js/bootstrap.min.js' },
+            // { src: '/templates/bootstrap4material/vendor/jquery.cookie/jquery.cookie.js' },
+            // { src: '/templates/bootstrap4material/js/front.js' },
         ],
         styles: [
             { style: '/templates/bootstrap4material/vendor/bootstrap/css/bootstrap.min.css' },
-            { style: '/templates/bootstrap4material/css/style.default.css' }
+            { style: '/templates/bootstrap4material/vendor/font-awesome/css/font-awesome.min.css' },
+            { style: '/templates/bootstrap4material/css/fontastic.css' },
+            { style: 'https://fonts.googleapis.com/css?family=Poppins:300,400,700' },
+            { style: '/templates/bootstrap4material/css/style.default.css' },
+            { style: '/templates/bootstrap4material/img/favicon.ico', type:'icon'}
         ]
     },
     data: {

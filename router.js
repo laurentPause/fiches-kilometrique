@@ -15,7 +15,7 @@ const routes = require('./routes/routes');
 const vue = require('./config/vue');
 
 /* Ajout de express-ejs-layouts */
-const ejsLayout = require('express-ejs-layouts');
+//const ejsLayout = require('express-ejs-layouts');
 
 /* Initialisation des variables */
 const router = {
