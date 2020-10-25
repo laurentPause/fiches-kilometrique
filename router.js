@@ -16,9 +16,8 @@ const ejsLayout = require('express-ejs-layouts');
 const router = {
     isStarted: false
 };
-console.log('__dirname!!!!!!!!!!!!!',__dirname);
 const vueOptions = {
-    rootPath: path.join('/'),
+    rootPath: path.join(__dirname , '../../views'),
     head: {
         title: 'Hello this is a global title',
         scripts: [
@@ -68,6 +67,9 @@ function start(callback) {
 function init(callback) {
     /* On s'assure que le serveur n'est vraiment pas démarré */
     router.isStarted = false;
+    
+    const expressVueMiddleware = expressVue.init();
+    expressApp.use(expressVueMiddleware);
 
     expressApp.use(morgan('dev'));
 
@@ -90,7 +92,6 @@ function init(callback) {
 
     // expressApp.set("layout extractScripts", true)
    
-    expressVue.use(expressApp, vueOptions);
 
     if (typeof callback != 'undefined') {
         callback();
@@ -100,14 +101,21 @@ function init(callback) {
 /* ROUTES */
 
 function loadRoutes(callback) {
-    expressVue.use(expressApp, vueOptions).then(() => {
-        expressApp.get('/',(req,res)=>{
-            const data = {
-                title: "Oh hi world!",
-            };
-            res.renderVue("test.vue", data);
-           })
-    });
+    expressApp.get('/', (req, res, next) => {
+        const data= {
+            otherData: 'Something Else' 
+        };
+        req.vueOptions= {
+            head: {
+                title: 'Page Title',
+                metas: [
+                    { property:'og:title', content: 'Page Title'},
+                    { name:'twitter:title', content: 'Page Title'},
+                ]
+            }    
+        }
+        res.renderVue('../../views/main.vue', data, req.vueOptions);
+    })
    
    
     if (typeof callback != 'undefined') {
