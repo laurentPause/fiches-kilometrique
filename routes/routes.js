@@ -14,6 +14,6 @@ exports.routes = (app) => {
                 ]
             }    
         }
-        res.renderVue(`main.vue`, data, req.vueOptions);
+        res.renderVue(`views/main.vue`, data, req.vueOptions);
     })
 }

@@ -12,7 +12,11 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "electron": "^10.1.2"
+    "coffee-script": "^1.12.7",
+    "electron": "^10.1.2",
+    "jade": "^1.11.0",
+    "pug": "^3.0.0",
+    "stylus": "^0.54.8"
   },
   "dependencies": {
     "axios": "^0.20.0",
