@@ -5,6 +5,8 @@ const http = require('http').Server(expressApp);
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const expressVue = require("express-vue");
+const path = require('path');
+
 
 
 // Routes
@@ -66,7 +68,7 @@ function init(callback) {
     // expressApp.set('view engine', 'ejs');
 
     // /* assets sera le répertoire où se trouverons nos fichiers côté client */
-    // expressApp.use(express.static(path.join(__dirname, 'assets')));
+    expressApp.use(express.static(path.join(__dirname, 'assets')));
 
     // /* views est défini comme notre dossier de vues par défaut */
     // expressApp.set('views', path.join(__dirname, '/views/'));

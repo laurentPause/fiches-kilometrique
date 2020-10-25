@@ -24,7 +24,8 @@ const vueOptions = {
             { src: 'https://example.com/script.js' },
         ],
         styles: [
-            { style: 'assets/templates/bootstrap4material/vendor/bootstrap/css/bootstrap.min.css' }
+            { style: '/templates/bootstrap4material/vendor/bootstrap/css/bootstrap.min.css' },
+            { style: '/templates/bootstrap4material/css/style.default.css' }
         ]
     },
     data: {
@@ -37,8 +38,8 @@ const vueOptions = {
     }
 }
 
-exports.config = (app, vue) => {
+exports.config = async (app, vue) => {
 
-    const expressVueMiddleware = vue.init(vueOptions);
+    const expressVueMiddleware =  vue.init(vueOptions);
     app.use(expressVueMiddleware);
 }
