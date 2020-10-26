@@ -20,11 +20,11 @@ const vueOptions = {
     head: {
         title: 'Fiches kilométrique',
         scripts: [
-            // { src: '/templates/bootstrap4material/vendor/jquery/jquery.min.js' },
-            // { src: '/templates/bootstrap4material/vendor/popper.js/umd/popper.min.js' },
-            // { src: '/templates/bootstrap4material/vendor/bootstrap/js/bootstrap.min.js' },
-            // { src: '/templates/bootstrap4material/vendor/jquery.cookie/jquery.cookie.js' },
-            // { src: '/templates/bootstrap4material/js/front.js' },
+            { src: '/templates/bootstrap4material/vendor/jquery/jquery.min.js' },
+            { src: '/templates/bootstrap4material/vendor/popper.js/umd/popper.min.js' },
+            { src: '/templates/bootstrap4material/vendor/bootstrap/js/bootstrap.min.js' },
+            { src: '/templates/bootstrap4material/vendor/jquery.cookie/jquery.cookie.js' },
+            { src: '/templates/bootstrap4material/js/front.js' },
         ],
         styles: [
             { style: '/templates/bootstrap4material/vendor/bootstrap/css/bootstrap.min.css' },

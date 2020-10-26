@@ -1,10 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
 
-const Individus = sequelize.define('Individus', {
+const Individus = Database.define('Individus', {
   // Model attributes are defined here
   nom: {
     type: DataTypes.STRING,
@@ -19,6 +16,6 @@ const Individus = sequelize.define('Individus', {
   }
 }, {
 });
-console.log(Individus === sequelize.models.Individus); 
+
 module.exports =  Individus;
 

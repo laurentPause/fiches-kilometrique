@@ -1,10 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
 
-const Deplacements = sequelize.define('Deplacements', {
+
+const Deplacements = Database.define('Deplacements', {
   // Model attributes are defined here
   libelle: {
     type: DataTypes.STRING,
@@ -12,6 +10,6 @@ const Deplacements = sequelize.define('Deplacements', {
   }
 }, {
 });
-console.log(Deplacements === sequelize.models.Deplacements); 
+
 module.exports =  Deplacements;
 

@@ -1,13 +1,12 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
+
 const Entites = require('./Entites');
 const Individus = require('./Individus');
 const Vehicules = require('../models/Vehicules');
 const Deplacements = require('./Deplacements');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
-const Trajets = sequelize.define('Trajets', {
+
+const Trajets = Database.define('Trajets', {
   // Model attributes are defined here
   jour: {
     type: DataTypes.DATE,
@@ -31,41 +30,21 @@ const Trajets = sequelize.define('Trajets', {
   depart: {
     type: DataTypes.DATE,
     allowNull: false
-  },
-  entite: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Entites,
-        key:'id'
-    }
-  },
-  individu: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Individus,
-        key:'id'
-    }
-  },
-  deplacement: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Deplacements,
-        key:'id'
-    }
-  },
-  vehicule: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Vehicules,
-        key:'id'
-    }
-  },
+  }
 }, {
 });
-console.log(Trajets === sequelize.models.Trajets); 
+
+Individus.hasMany(Trajets);
+Trajets.belongsTo(Individus);
+
+Entites.hasMany(Trajets);
+Trajets.belongsTo(Entites);
+
+Vehicules.hasMany(Trajets);
+Trajets.belongsTo(Vehicules);
+
+Deplacements.hasMany(Trajets);
+Trajets.belongsTo(Deplacements);
+
 module.exports =  Trajets;
 

@@ -1,24 +1,19 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
+
 const Types = require('./Types');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
-const Entites = sequelize.define('Entites', {
+
+const Entites = Database.define('Entites', {
   // Model attributes are defined here
   nom: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  type: {
-      type: DataTypes.INTEGER,
-      references:{
-        model: Types,
-        key: 'id',
-      }
-  }
 }, {
 });
-console.log(Entites === sequelize.models.Entites); 
+
+Types.hasMany(Entites);
+Entites.belongsTo(Types);
+
 module.exports =  Entites;
 

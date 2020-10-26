@@ -1,35 +1,22 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
+
+
+
 const Entites = require('./Entites');
 const Individus = require('./Individus');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
-const Entites_individus = sequelize.define('Entites_individus', {
+
+const Entites_individus = Database.define('Entites_individus', {
   // Model attributes are defined here
   total_km: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue:0
-  },
-  entites: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Entites,
-        key:'id'
-    }
-  },
-  individu: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-        model: Individus,
-        key:'id'
-    }
-  },
+  }
 }, {
 });
-console.log(Entites_individus === sequelize.models.Entites_individus); 
+Entites.belongsToMany(Individus, { through: Entites_individus });
+Individus.belongsToMany(Entites, { through: Entites_individus });
+
 module.exports =  Entites_individus;
 

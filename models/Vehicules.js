@@ -1,9 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: '../database.db'
-});
-const Vehicules = sequelize.define('Vehicules', {
+const { DataTypes } = require('sequelize');
+const Database = require('../config/database');
+
+const Vehicules = Database.define('Vehicules', {
   // Model attributes are defined here
   marque: {
     type: DataTypes.STRING,
@@ -27,6 +25,6 @@ const Vehicules = sequelize.define('Vehicules', {
   },
 }, {
 });
-console.log(Vehicules === sequelize.models.Vehicules); 
+
 module.exports =  Vehicules;
 
