@@ -1,6 +1,6 @@
 /.vscode
 /package-lock.json
 /node_modules
-/assets/templates/bootstrap4material
+/public/assets/bootstrap4material
 database.db
 /.expressvue

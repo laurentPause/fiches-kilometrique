@@ -6,16 +6,15 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const expressVue = require("express-vue");
 const path = require('path');
-
-
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // Routes
 const routes = require('./routes/routes');
 
-const vue = require('./config/vue');
 
 /* Ajout de express-ejs-layouts */
-//const ejsLayout = require('express-ejs-layouts');
+const ejsLayout = require('express-ejs-layouts');
 
 /* Initialisation des variables */
 const router = {
@@ -32,7 +31,7 @@ function start(callback) {
             loadRoutes(function () {
                 /* Lance le serveur web sur le port 3000 */
                 http.listen(4000, function () {
-                    console.log('Application is running on port 3000');
+                    console.log('Application is running on port 4000');
                     router.isStarted = true;
                     if (typeof callback != 'undefined') {
                         callback();
@@ -52,8 +51,6 @@ function init(callback) {
     /* On s'assure que le serveur n'est vraiment pas démarré */
     router.isStarted = false;
     
-    vue.config(expressApp,expressVue);
-
     expressApp.use(morgan('dev'));
 
     expressApp.use(bodyParser.urlencoded({
@@ -61,19 +58,31 @@ function init(callback) {
     }));
     expressApp.use(bodyParser.json());
 
-    // /* Ajout de express-ejs-layouts */
-    // expressApp.use(ejsLayout);
+    // session
 
-    // /* J'utilise ici EJS comme moteur de template */
-    // expressApp.set('view engine', 'ejs');
+    expressApp.use(session({
+        key: 'user_sid',
+        secret: 'somerandonstuffs',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60000000
+        }
+    }));
+
+    /* Ajout de express-ejs-layouts */
+    expressApp.use(ejsLayout);
+
+    /* J'utilise ici EJS comme moteur de template */
+    expressApp.set('view engine', 'ejs');
 
     // /* assets sera le répertoire où se trouverons nos fichiers côté client */
     expressApp.use(express.static(path.join(__dirname, 'assets')));
 
-    // /* views est défini comme notre dossier de vues par défaut */
-    // expressApp.set('views', path.join(__dirname, '/views/'));
+    /* views est défini comme notre dossier de vues par défaut */
+    expressApp.set('views', path.join(__dirname, '/views/'));
 
-    // expressApp.set("layout extractScripts", true)
+    expressApp.set("layout extractScripts", true)
    
 
     if (typeof callback != 'undefined') {

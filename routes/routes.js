@@ -1,20 +1,13 @@
-const rootPath = '../../views/';
+
+// Controllers
+const users = require('../controllers/c_users')
+const accueils = require('../controllers/c_accueil')
+
+// Middlewares
+const connexion = require('../middleware/auth')
 
 exports.routes = (app) => {
-    app.get('/', (req, res, next) => {
-        const data= {
-            otherData: 'Something Else' 
-        };
-        req.vueOptions= {
-            head: {
-                title: 'Page Title',
-                metas: [
-                    { property:'og:title', content: 'Page Title'},
-                    { name:'twitter:title', content: 'Page Title'},
-                ]
-            },
-            layout: 'layout/dashboard/header.vue'   
-        }
-        res.renderVue(`views/main.vue`, data, req.vueOptions);
-    })
+    app.get('/', connexion.verify, accueils.dashboard);
+    app.get('/register', users.register);
+    app.get('/login', users.login);
 }
