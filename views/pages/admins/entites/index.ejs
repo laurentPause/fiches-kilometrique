@@ -23,6 +23,11 @@
                         <td> <%= entite.Type.libelle %> </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="action-ligne">
+                                <a type="button" href="/entites/<%= entite.id %>" class="btn btn-info" >
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
                                 <button entite="button" data-id="<%=  entite.id %>" class="btn btn-warning">
                                     <a><i class="fas fa-edit"></i></a>
                                 </button>

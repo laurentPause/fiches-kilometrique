@@ -20,6 +20,7 @@ exports.routes = (app) => {
     // Entités
     app.get('/types', connexion.verify, entites.types);
     app.get('/entites', connexion.verify, entites.view);
+    app.get('/entites/:id', connexion.verify, entites.board);
     app.post('/entites', connexion.verify, entites.add);
 
     // Véhicules

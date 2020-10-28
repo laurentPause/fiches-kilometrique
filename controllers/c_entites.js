@@ -1,5 +1,7 @@
 const Entites = require("../models/Entites");
+const Individus = require("../models/Individus");
 const Types = require("../models/Types");
+const Vehicules = require("../models/Vehicules");
 
 exports.types = async (req, res) => {
     const user = req.session.user;
@@ -52,6 +54,37 @@ exports.view = async (req, res) => {
         user: user
     }
     res.render('pages/admins/entites', options)
+}
+
+exports.board = async (req, res) => {
+    const user = req.session.user;
+    await Entites.sync();
+    const entite  = await Entites.findOne({
+       where:{
+           id: req.params.id
+       },
+       include: [
+           {
+               model: Individus
+           },
+           {
+               model: Vehicules
+           }
+       ]
+    });
+
+    const individus = await Individus.findAll();
+    const vehicules = await Vehicules.findAll();
+
+    const options = {
+        layout: 'layout/dashboard',
+        title: entite.nom,
+        entite: entite,
+        vehicules: vehicules,
+        individus: individus,
+        user: user
+    }
+    res.render('pages/admins/entites/board', options)
 }
 
 exports.add = async (req, res) => {
