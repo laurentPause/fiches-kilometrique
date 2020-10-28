@@ -1,7 +1,7 @@
 exports.dashboard = (req, res, next) => {
     const options ={
-        layout: 'views/layout/dashboard'
+        layout: 'layout/dashboard'
     }
 
-    res.render('views/pages',options)
+    res.render('pages',options)
 }

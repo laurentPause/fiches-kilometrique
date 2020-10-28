@@ -17,7 +17,7 @@ async function register() {
             password: form.password.value,
         }
 
-        const user = await Axios.post('/users',data);
+        const user = await Axios.post('/register',data);
 
     } catch (error) {
      console.log(error);   

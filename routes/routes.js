@@ -9,9 +9,10 @@ const connexion = require('../middleware/auth')
 exports.routes = (app) => {
     // render page
     app.get('/', connexion.verify, accueils.dashboard);
-    app.get('/register', users.register);
-    app.get('/login', users.login);
+    app.get('/register',connexion.logged, users.register);
+    app.get('/login',connexion.logged ,users.login);
 
     // api
-    app.post('/users', users.add)
+    app.post('/register', users.add);
+    app.post('/login', users.connexion);
 }

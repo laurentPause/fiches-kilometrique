@@ -60,3 +60,44 @@ exports.add = async (req, res) => {
         });
     }
 }
+
+exports.connexion = async (req, res) => {
+    try {
+        const data = {
+            email,
+            password
+        } = req.body;
+        const user = await Individus.findOne({
+            where: {
+                email: data.email
+            }
+        })
+        if (user) {
+            const veriPass = bcrypt.compareSync(data.password, user.password);
+            if (veriPass) {
+                req.session.user = user;
+                res.status(200).json({
+                    message: 'OK',
+                    results: user
+                });
+            } else {
+                res.status(400).json({
+                    message: 'KO',
+                    results: user
+                });
+            }
+        } else {
+            res.status(400).json({
+                message: 'Non existant',
+                results: user
+            });
+        }
+
+
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
