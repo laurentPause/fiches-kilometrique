@@ -2,8 +2,6 @@ const {  DataTypes } = require('sequelize');
 const Database = require('../config/database');
 
 
-const Entites = require('./Entites');
-const Vehicules = require('./Vehicules');
 
 const Entites = require('./Entites');
 const Vehicules = require('./Vehicules');

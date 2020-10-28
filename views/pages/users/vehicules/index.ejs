@@ -28,6 +28,11 @@
                         <td> <%= vehicule.immatriculation %> </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="action-ligne">
+                                <a type="button" href="/vehicules/<%= vehicule.id %>" class="btn btn-info" >
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
                                 <button vehicule="button" data-id="<%=  vehicule.id %>" class="btn btn-warning">
                                     <a><i class="fas fa-edit"></i></a>
                                 </button>
@@ -93,4 +98,4 @@
     </div>
 </div>
 
-<script src="js/vehicules.js"></script>
+<script src="/js/vehicules.js"></script>

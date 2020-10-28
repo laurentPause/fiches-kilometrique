@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-body">
+        <div class="btn-group mb-2" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#modalAdd">Associer</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(vehicule.Entites.length > 0) {%>
+                    <% vehicule.Entites.forEach(function(entite){ %>
+                    <tr>
+                        <td> <%= entite.nom %> </td>
+                        <td> <%= entite.Type.libelle %> </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  entite.id %>" class="btn btn-warning">
+                                    <a><i class="fas fa-edit"></i></a>
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  entite.id %>" class="btn btn-danger">
+                                    <a><i class="fas fa-trash"></i></i></a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    <% } else{ %>
+                    <tr>
+                        <td class="text-center" colspan="6">Aucune entités associer</td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modalAdd" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="exampleModalLabel" class="modal-title">Ajouter un véhicule</h4>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAssoc">
+                    <div class="form-group">
+                        <label for="type-entite">Entités</label>
+                        <select class="form-control" id="type-entite" name="type" required>
+                            <option value=null>Sélectionner..</option>
+                            <% entites.Entites.forEach(option => {%>
+
+                            <option value="<%= option.id %>"><%= option.nom %></option>
+
+                            <%}); %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/vehicules.js"></script>

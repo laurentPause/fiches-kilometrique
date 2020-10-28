@@ -24,6 +24,7 @@ exports.routes = (app) => {
 
     // Véhicules
     app.get('/vehicules', connexion.verify, vehicules.view);
+    app.get('/vehicules/:id', connexion.verify, vehicules.board);
     app.post('/vehicules', connexion.verify, vehicules.add);
 
 

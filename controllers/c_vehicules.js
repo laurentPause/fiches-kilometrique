@@ -1,6 +1,10 @@
+const Entites = require("../models/Entites");
 const Individus = require("../models/Individus");
+const Types = require("../models/Types");
 const Vehicules = require("../models/Vehicules");
 const Vehicules_individus = require("../models/Vehicules_individus");
+const Entites_individus = require("../models/Entites_individus");
+const Entites_vehicules = require("../models/Entites_vehicules");
 
 exports.view = async (req, res) => {
     const user = req.session.user;
@@ -17,11 +21,48 @@ exports.view = async (req, res) => {
     });
     const options = {
         layout: 'layout/dashboard',
-        title: 'Entités',
+        title: 'Véhicules',
         vehicules: vehicules,
         user: user
     }
     res.render('pages/users/vehicules', options)
+}
+
+exports.board = async (req, res) => {
+    const user = req.session.user;
+    await Vehicules.sync()
+    await Entites.sync()
+    await Entites_individus.sync()
+    await Entites_vehicules.sync()
+
+    const vehicule  = await Vehicules.findOne({
+        where:{
+            id: req.params.id
+        },
+        include: {
+            model: Entites,
+            include: {
+                model: Types
+            }
+        }
+    });
+
+    const entites = await Individus.findOne({
+        where:{
+            id: user.id
+        },
+        include: {
+            model: Entites
+        }
+    })
+    const options = {
+        layout: 'layout/dashboard',
+        title: `${vehicule.marque} ${vehicule.modele} ${vehicule.annee} Entités`,
+        vehicule: vehicule,
+        entites: entites,
+        user: user
+    }
+    res.render('pages/users/vehicules/board', options)
 }
 
 exports.add = async (req, res) => {
