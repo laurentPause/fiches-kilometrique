@@ -3,7 +3,8 @@
     <div class="sidebar-header d-flex align-items-center">
         <!-- <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div> -->
         <div class="title">
-            <h1 class="h4">Utilisateurs</h1>
+            <h1 class="h4"><%= user.prenom %> <%= user.nom %>  </h1>
+            <p><%= user.Role.libelle %> </p>
         </div>
     </div>
     <!-- Sidebar Navidation Menus-->
@@ -15,6 +16,10 @@
             <li><a href="/vehicules"><i class="fas fa-car"></i>Véhicules</a></li>
             <li><a href="/individus"><i class="fas fa-users"></i>Individus</a></li>
         </ul>
+        <span class="heading">Configuration</span>
+        <ul class="list-unstyled">
+            <li><a href="/types"><i class="fas fa-cog"></i>Types entités</a></li>
+        </ul>
     <% } else { %>
         <ul class="list-unstyled">
             <li><a href="/"> <i class="fas fa-tachometer-alt"></i>Tableau de bord </a></li>
@@ -22,6 +27,6 @@
         </ul>
     <% } %>
     
-    <span class="heading">Configuration</span>
+    
    
 </nav>
