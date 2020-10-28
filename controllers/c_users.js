@@ -1,7 +1,6 @@
 const Individus = require("../models/Individus");
 const Roles = require("../models/Roles");
 
-const dotenv = require('dotenv').config();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 

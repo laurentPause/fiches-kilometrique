@@ -4,3 +4,4 @@
 /public/assets/bootstrap4material
 database.db
 /.expressvue
+.env
