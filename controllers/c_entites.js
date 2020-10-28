@@ -1,6 +1,5 @@
-const Individus = require("../models/Individus");
-const Roles = require("../models/Roles");
-const Types = require("../models/Types")
+const Entites = require("../models/Entites");
+const Types = require("../models/Types");
 
 exports.types = async (req, res) => {
     const user = req.session.user;
@@ -33,3 +32,47 @@ exports.types = async (req, res) => {
     }
     res.render('pages/admins/types', options)
 }
+
+exports.view = async (req, res) => {
+    const user = req.session.user;
+    await Entites.sync();
+    const entites  = await Entites.findAll({
+        include: {
+            model: Types
+        }
+    });
+    const types  = await Types.findAll({});
+
+
+    const options = {
+        layout: 'layout/dashboard',
+        title: 'Entités',
+        entites: entites,
+        types: types,
+        user: user
+    }
+    res.render('pages/admins/entites', options)
+}
+
+exports.add = async (req, res) => {
+    try {
+        const data = {
+            nom,
+            TypeId
+        } = req.body;
+
+        const entite = await Entites.create(data);
+
+        res.status(200).json({
+            message: 'OK',
+            results: entite
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
+
+

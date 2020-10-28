@@ -1,9 +1,4 @@
 <div class="card">
-<div class="card-header d-flex align-items-center">
-    <h3 class="h4">
-         Types
-    </h3>
-</div>
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-striped table-hover">
@@ -11,7 +6,7 @@
                 <tr>
                     <th>Libellé</th>
                     
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,11 +15,6 @@
                 <tr>
                     <td> <%= type.libelle %> </td>
                     <td>
-                        <div class="btn-group" role="group"  aria-label="action-ligne">
-                            <button type="button" data-id="<%=  type.id %>" class="btn btn-info" >
-                              <a><i class="fa fa-eye"></i></a>
-                            </button>
-                        </div>
                         <div class="btn-group" role="group" aria-label="action-ligne">
                             <button type="button" data-id="<%=  type.id %>" class="btn btn-warning" >
                               <a><i class="fas fa-edit"></i></a>

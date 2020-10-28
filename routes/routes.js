@@ -12,12 +12,14 @@ exports.routes = (app) => {
     app.get('/', connexion.verify, accueils.dashboard);
 
     // users
-    app.get('/register',connexion.logged, users.register);
-    app.get('/login',connexion.logged ,users.login);
-    app.get('/signout',connexion.verify ,users.disconnect);
+    app.get('/register', connexion.logged, users.register);
+    app.get('/login', connexion.logged, users.login);
+    app.get('/signout', connexion.verify, users.disconnect);
 
     // Entités
     app.get('/types', connexion.verify, entites.types);
+    app.get('/entites', connexion.verify, entites.view);
+    app.post('/entites', connexion.verify, entites.add);
 
     // api users
     app.post('/register', users.add);
