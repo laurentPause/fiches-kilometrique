@@ -4,12 +4,12 @@
         <!-- <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div> -->
         <div class="title">
             <h1 class="h4"><%= user.prenom %> <%= user.nom %>  </h1>
-            <p><%= user.Role.libelle %> </p>
+            <p><%= user.Role %> </p>
         </div>
     </div>
     <!-- Sidebar Navidation Menus-->
     <span class="heading">Menu</span>
-    <% if (user.Role.libelle == 'Admin') { %>
+    <% if (user.Role == 'Admin') { %>
         <ul class="list-unstyled">
             <li><a href="/"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a></li>
             <li><a href="/entites"><i class="fas fa-building"></i>Entités</a></li>

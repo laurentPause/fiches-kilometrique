@@ -1,3 +1,4 @@
+<div class="card">
 <div class="card-header d-flex align-items-center">
     <h3 class="h4">
          Types
@@ -8,31 +9,30 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Activer</th>
+                    <th>Libellé</th>
+                    
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                    <% if(users.length > 0) {%>
-                    <% users.forEach(function(user){ %>
+                    <% if(types.length > 0) {%>
+                    <% types.forEach(function(type){ %>
                 <tr>
-                    <td> <%= user.nom %> </td>
-                    <td> <%= user.prenom %> </td>
-                    <td> <%= user.email %> </td>
+                    <td> <%= type.libelle %> </td>
                     <td>
-                      <% if(user.activer > 0) {%>
-                        <span  class="badge badge-pill badge-success">Activer</span>
-                      <% }else{ %>
-                        <span  class="badge badge-pill badge-danger">Non Activer</span>
-                      <% } %>  
-                    </td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="action-ligne">
-                            <button type="button" class="btn btn-info" >
+                        <div class="btn-group" role="group"  aria-label="action-ligne">
+                            <button type="button" data-id="<%=  type.id %>" class="btn btn-info" >
                               <a><i class="fa fa-eye"></i></a>
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="action-ligne">
+                            <button type="button" data-id="<%=  type.id %>" class="btn btn-warning" >
+                              <a><i class="fas fa-edit"></i></a>
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="action-ligne">
+                            <button type="button" data-id="<%=  type.id %>" class="btn btn-danger" >
+                              <a><i class="fas fa-trash"></i></i></a>
                             </button>
                         </div>
                     </td>
@@ -40,11 +40,12 @@
                 <% }); %>
                 <% } else{ %>
                 <tr>
-                    <td class="text-center" colspan="3">Aucune utilisateurs</td>
+                    <td class="text-center" colspan="3">Aucun type</td>
                 </tr>
                 <% } %>
 
             </tbody>
         </table>
     </div>
+</div>
 </div>
