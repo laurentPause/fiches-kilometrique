@@ -11,6 +11,7 @@ exports.routes = (app) => {
     app.get('/', connexion.verify, accueils.dashboard);
     app.get('/register',connexion.logged, users.register);
     app.get('/login',connexion.logged ,users.login);
+    app.get('/signout',connexion.verify ,users.disconnect);
 
     // api
     app.post('/register', users.add);

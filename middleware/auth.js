@@ -1,5 +1,5 @@
 exports.verify = function(req, res, next){
-    if (req.session.user) {
+    if ( req.session.user || req.session.admin ) {
        next();
     } else {
         res.redirect('/login');
@@ -7,7 +7,7 @@ exports.verify = function(req, res, next){
 }
 
 exports.logged = function(req, res, next){
-    if (req.session.user) {
+    if (req.session.user || req.session.admin) {
         res.redirect('/');
     } else {
        next()
