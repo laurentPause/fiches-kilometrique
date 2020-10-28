@@ -110,7 +110,7 @@ exports.connexion = async (req, res) => {
             })
             const veriPass = bcrypt.compareSync(data.password, admin[0].password);
             if(veriPass){    
-                req.session.admin = admin[0];
+                req.session.user = admin[0];
                 res.status(200).json({
                     message: 'admin',
                 });
