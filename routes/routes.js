@@ -3,6 +3,7 @@
 const users = require('../controllers/c_users')
 const accueils = require('../controllers/c_accueil')
 const entites = require('../controllers/c_entites')
+const vehicules = require('../controllers/c_vehicules')
 
 // Middlewares
 const connexion = require('../middleware/auth')
@@ -21,7 +22,13 @@ exports.routes = (app) => {
     app.get('/entites', connexion.verify, entites.view);
     app.post('/entites', connexion.verify, entites.add);
 
+    // Véhicules
+    app.get('/vehicules', connexion.verify, vehicules.view);
+    app.post('/vehicules', connexion.verify, vehicules.add);
+
+
     // api users
     app.post('/register', users.add);
     app.post('/login', users.connexion);
+
 }

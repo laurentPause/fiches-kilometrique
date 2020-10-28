@@ -16,7 +16,7 @@ const Vehicules = Database.define('Vehicules', {
     allowNull: false
   },
   annee: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false
   },
   immatriculation: {

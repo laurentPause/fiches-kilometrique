@@ -1,0 +1,96 @@
+<div class="card">
+    <div class="card-body">
+        <div class="btn-group mb-2" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#modalAdd">Ajouter</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Marque</th>
+                        <th>Modèle</th>
+                        <th>Puissance</th>
+                        <th>Année</th>
+                        <th>Immatriculation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(vehicules.Vehicules.length > 0) {%>
+                    <% vehicules.Vehicules.forEach(function(vehicule){ %>
+                    <tr>
+                        <td> <%= vehicule.marque %> </td>
+                        <td> <%= vehicule.modele %> </td>
+                        <td> <%= vehicule.puissance %> </td>
+                        <% dateVehicule = new Date(vehicule.annee); %> 
+                        <td> <%=  dateVehicule.getFullYear() %> </td>
+                        <td> <%= vehicule.immatriculation %> </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button vehicule="button" data-id="<%=  vehicule.id %>" class="btn btn-warning">
+                                    <a><i class="fas fa-edit"></i></a>
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button vehicule="button" data-id="<%=  vehicule.id %>" class="btn btn-danger">
+                                    <a><i class="fas fa-trash"></i></i></a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    <% } else{ %>
+                    <tr>
+                        <td class="text-center" colspan="6">Aucun vehicule</td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modalAdd" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="exampleModalLabel" class="modal-title">Ajouter un véhicule</h4>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddVehicule">
+                    <div class="form-group">
+                        <label for="marque-vehicule">Marque</label>
+                        <input id="marque-vehicule" class="form-control" type="text" name="marque" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modele-vehicule">Modèle</label>
+                        <input id="modele-vehicule" class="form-control" type="text" name="modele" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="puissance-vehicule">Puissance</label>
+                        <input id="puissance-vehicule" class="form-control" type="number" name="puissance" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="annee-vehicule">Année</label>
+                        <input id="annee-vehicule" class="form-control" type="date" name="annee" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="immatriculation-vehicule">Immatriculation</label>
+                        <input id="immatriculation-vehicule" class="form-control" type="text" name="immatriculation" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="js/vehicules.js"></script>
