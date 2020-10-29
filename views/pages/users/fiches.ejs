@@ -1,0 +1,129 @@
+<div class="card">
+    <div class="card-body">
+        <div class="btn-group mb-2" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">Ajouter</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Entité</th>
+                        <th>Véhicule</th>
+                        <th>Objet</th>
+                        <th>Total kilométrique</th>
+                        <th>Indemnité</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(fiches.Fiches.length > 0) {%>
+                    <% fiches.Fiches.forEach(function(fiche){ %>
+                    <tr>
+                        <td> <%= fiche.Entire.nom %> </td>
+                        <% dateVeh = new Date(fiche.Vehicule.annee); %>
+                        <td> <%= fiche.Vehicule.marque %> <%= fiche.Vehicule.modele %> <%= dateVeh.getFullYear() %></td>
+                        <td> <%= fiche.Deplacement.libelle %> </td>
+                        <td> <%= fiche.compteur_arriver - fiche.compteur_depart %> </td>
+                        <td> To Do </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button vehicule="button" data-id="<%=  vehicule.id %>" class="btn btn-warning">
+                                    <a><i class="fas fa-edit"></i></a>
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button vehicule="button" data-id="<%=  vehicule.id %>" class="btn btn-danger">
+                                    <a><i class="fas fa-trash"></i></i></a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    <% } else{ %>
+                    <tr>
+                        <td class="text-center" colspan="6">Aucune fiche</td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modalAdd" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="exampleModalLabel" class="modal-title">Ajouter une fiche</h4>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddFiche" data-individu="<%= fiches.id %> ">
+                    <div class="form-group">
+                        <label for="entite-fiche">Entité</label>
+                        <select class="form-control" id="entite-fiche" name="entite" required>
+                            <option value=null>Sélectionner..</option>
+                            <% fiches.Entites.forEach(option => {%>
+                                <% entite =JSON.stringify(option) %> 
+
+                            <option value="<%= entite %>"><%= option.nom %>
+                            </option>
+
+                            <%}); %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicule-fiche">Véhicule</label>
+                        <select class="form-control" id="vehicule-fiche" name="vehicule" required>
+                            <option value=null>Sélectionner..</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date-fiche">Date</label>
+                        <input id="date-fiche" class="form-control" type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="depart-fiche">Lieu de départ</label>
+                        <input id="depart-fiche" class="form-control" type="text" name="depart" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="arriver-fiche">Lieu d'arrivé</label>
+                        <input id="arriver-fiche" class="form-control" type="text" name="arriver" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deplacement-fiche">Objet</label>
+                        <select class="form-control" id="deplacement-fiche" name="deplacement" required>
+                            <option value=null>Sélectionner..</option>
+                            <% deplacements.forEach(option => {%>
+
+                            <option value="<%= option.id %>"><%= option.libelle %></option>
+
+                            <%}); %>
+                        </select> 
+                    </div>
+                    <div class="form-group">
+                        <label for="commentaire-fiche">Commentaire</label>
+                        <textarea class="form-control" name="commentaire" id="commentaire-fiche" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="relDepart-fiche">Relevé compteur Départ</label>
+                        <input id="relDepart-fiche" class="form-control" type="number" name="relDepart" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="relArriver-fiche">Relevé compteur Arrivé</label>
+                        <input id="relArriver-fiche" class="form-control" type="number" name="relArriver" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/fiches.js"></script>

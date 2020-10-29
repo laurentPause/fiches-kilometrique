@@ -34,6 +34,7 @@ exports.routes = (app) => {
 
     // Fiches
     app.get('/deplacement', connexion.verify, fiches.deplacements);
+    app.get('/fiches', connexion.verify, fiches.view);
 
 
 
