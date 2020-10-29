@@ -22,6 +22,8 @@ exports.routes = (app) => {
     app.get('/entites', connexion.verify, entites.view);
     app.get('/entites/:id', connexion.verify, entites.board);
     app.post('/entites', connexion.verify, entites.add);
+    app.post('/entites/individus', connexion.verify, entites.addIndividus);
+    app.post('/entites/vehicules', connexion.verify, entites.addVehicules);
 
     // Véhicules
     app.get('/vehicules', connexion.verify, vehicules.view);

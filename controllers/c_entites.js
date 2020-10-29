@@ -1,5 +1,8 @@
 const Entites = require("../models/Entites");
+const Entites_individus = require("../models/Entites_individus");
+const Entites_vehicules = require("../models/Entites_vehicules");
 const Individus = require("../models/Individus");
+const Roles = require("../models/Roles");
 const Types = require("../models/Types");
 const Vehicules = require("../models/Vehicules");
 
@@ -72,8 +75,17 @@ exports.board = async (req, res) => {
            }
        ]
     });
-
-    const individus = await Individus.findAll();
+    const roleUser = await Roles.findOne({
+        raw: true,
+        where:{
+            libelle: 'User'
+        }
+    })
+    const individus = await Individus.findAll({
+        where: {
+            RoleId: roleUser.id
+        }
+    });
     const vehicules = await Vehicules.findAll();
 
     const options = {
@@ -95,6 +107,50 @@ exports.add = async (req, res) => {
         } = req.body;
 
         const entite = await Entites.create(data);
+
+        res.status(200).json({
+            message: 'OK',
+            results: entite
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
+
+exports.addIndividus = async (req, res) => {
+    try {
+        const data = {
+            total_km,
+            EntiteId,
+            IndividuId
+        } = req.body;
+
+        const entite = await Entites_individus.create(data);
+
+        res.status(200).json({
+            message: 'OK',
+            results: entite
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
+
+exports.addVehicules = async (req, res) => {
+    try {
+        const data = {
+            total_km,
+            EntiteId,
+            VehiculeId
+        } = req.body;
+
+        const entite = await Entites_vehicules.create(data);
 
         res.status(200).json({
             message: 'OK',

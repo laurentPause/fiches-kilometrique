@@ -109,10 +109,10 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form id="formAssocInd">
+                <form id="formAssocInd" data-entite="<%= entite.id %>">
                     <div class="form-group">
                         <label for="type-entite">Individus</label>
-                        <select class="form-control" id="individu-entite" name="type" required>
+                        <select class="form-control" id="individu-entite" name="individu" required>
                             <option value=null>Sélectionner..</option>
                             <% individus.forEach(option => {%>
 
@@ -140,7 +140,7 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form id="formAssocVeh">
+                <form id="formAssocVeh" data-entite="<%= entite.id %>">
                     <div class="form-group">
                         <label for="type-entite">Véhicules</label>
                         <select class="form-control" id="vehicule-entite" name="vehicule" required>
@@ -161,3 +161,5 @@
         </div>
     </div>
 </div>
+
+<script src="/js/assocEntite.js"></script>

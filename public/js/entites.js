@@ -2,10 +2,12 @@ const { default: Axios } = require("axios");
 
 const formAdd = document.getElementById('formAddEntite');
 
+
 formAdd.addEventListener('submit', (event) => {
     event.preventDefault();
     add();
 })
+
 
 async function add() {
     try {
@@ -23,3 +25,4 @@ async function add() {
         
     }
 }
+
