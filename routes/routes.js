@@ -4,6 +4,7 @@ const users = require('../controllers/c_users')
 const accueils = require('../controllers/c_accueil')
 const entites = require('../controllers/c_entites')
 const vehicules = require('../controllers/c_vehicules')
+const fiches = require('../controllers/c_fiches')
 
 // Middlewares
 const connexion = require('../middleware/auth')
@@ -30,6 +31,10 @@ exports.routes = (app) => {
     app.get('/vehicules/:id', connexion.verify, vehicules.board);
     app.post('/vehicules', connexion.verify, vehicules.add);
     app.post('/vehicules/entites', connexion.verify, vehicules.addEntites);
+
+    // Fiches
+    app.get('/deplacement', connexion.verify, fiches.deplacements);
+
 
 
     // api users

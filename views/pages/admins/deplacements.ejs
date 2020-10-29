@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Libellé</th>
+                        
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% if(deplacements.length > 0) {%>
+                        <% deplacements.forEach(function(deplacement){ %>
+                    <tr>
+                        <td> <%= deplacement.libelle %> </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  deplacement.id %>" class="btn btn-warning" >
+                                  <a><i class="fas fa-edit"></i></a>
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  deplacement.id %>" class="btn btn-danger" >
+                                  <a><i class="fas fa-trash"></i></i></a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    <% } else{ %>
+                    <tr>
+                        <td class="text-center" colspan="3">Aucun objet de déplacement</td>
+                    </tr>
+                    <% } %>
+    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
