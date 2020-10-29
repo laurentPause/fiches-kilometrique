@@ -80,3 +80,33 @@ exports.view = async (req, res) => {
     }
     res.render('pages/users/fiches', options)
 }
+
+exports.add = async (req, res) => {
+    try {
+        const user = req.session.user;
+        const data = {
+            dateFiche,
+            depart,
+            arriver,
+            compteur_depart,
+            compteur_arriver,
+            commentaire,
+            IndividuId,
+            VehiculeId,
+            EntiteId,
+            DeplacementId
+        } = req.body;
+
+        const fiche = await Fiches.create(data);
+
+        res.status(200).json({
+            message: 'OK',
+            results: fiche
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
