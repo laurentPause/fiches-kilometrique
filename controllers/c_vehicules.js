@@ -55,9 +55,11 @@ exports.board = async (req, res) => {
             model: Entites
         }
     })
+
+    const dateVeh = new Date(vehicule.annee);
     const options = {
         layout: 'layout/dashboard',
-        title: `${vehicule.marque} ${vehicule.modele} ${vehicule.annee} Entités`,
+        title: `${vehicule.marque} ${vehicule.modele} ${dateVeh.getFullYear()}`,
         vehicule: vehicule,
         entites: entites,
         user: user
@@ -81,6 +83,28 @@ exports.add = async (req, res) => {
             VehiculeId: vehicule.id,
             IndividuId: user.id
         })
+
+        res.status(200).json({
+            message: 'OK',
+            results: vehicule
+        });
+    } catch (error) {
+        res.status(400).json({
+            message: 'KO',
+            results: error
+        });
+    }
+}
+
+exports.addEntites = async (req, res) => {
+    try {
+        const data = {
+            total_km,
+            EntiteId,
+            VehiculeId
+        } = req.body;
+
+        const vehicule = await Entites_vehicules.create(data);
 
         res.status(200).json({
             message: 'OK',

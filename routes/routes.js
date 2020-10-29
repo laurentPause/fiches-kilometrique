@@ -29,6 +29,7 @@ exports.routes = (app) => {
     app.get('/vehicules', connexion.verify, vehicules.view);
     app.get('/vehicules/:id', connexion.verify, vehicules.board);
     app.post('/vehicules', connexion.verify, vehicules.add);
+    app.post('/vehicules/entites', connexion.verify, vehicules.addEntites);
 
 
     // api users

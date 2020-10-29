@@ -1,9 +1,10 @@
 <div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="h4">
+            Entités <span class="ml-3 badge badge-primary" role="button" data-toggle="modal" data-target="#modalAssocEnt"><i class="fa fa-plus"></i> Associer</span>
+        </h3>
+    </div>
     <div class="card-body">
-        <div class="btn-group mb-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#modalAdd">Associer</button>
-        </div>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
@@ -45,19 +46,19 @@
     </div>
 </div>
 
-<div id="modalAdd" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
+<div id="modalAssocEnt" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
     <div role="document" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 id="exampleModalLabel" class="modal-title">Ajouter un véhicule</h4>
+                <h4 id="exampleModalLabel" class="modal-title">Associer à une entité</h4>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form id="formAssoc">
+                <form id="formAssocEnt" data-vehicule="<%= vehicule.id %> ">
                     <div class="form-group">
                         <label for="type-entite">Entités</label>
-                        <select class="form-control" id="type-entite" name="type" required>
+                        <select class="form-control" id="type-entite" name="entite" required>
                             <option value=null>Sélectionner..</option>
                             <% entites.Entites.forEach(option => {%>
 
@@ -77,4 +78,4 @@
     </div>
 </div>
 
-<script src="/js/vehicules.js"></script>
+<script src="/js/assocVeh.js"></script>
