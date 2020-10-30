@@ -1,7 +1,9 @@
+const Baremes = require("../models/Baremes")
 const Deplacements = require("../models/Deplacements")
 const Entites = require("../models/Entites")
 const Fiches = require("../models/Fiches")
 const Individus = require("../models/Individus")
+const Regles = require("../models/Regles")
 const Vehicules = require("../models/Vehicules")
 
 exports.deplacements = async (req, res) => {
@@ -48,6 +50,7 @@ exports.deplacements = async (req, res) => {
 exports.view = async (req, res) => {
     const user = req.session.user;
     await Fiches.sync()
+    await Baremes.sync()
 
     const fiches = await Individus.findOne({
         where: {
@@ -69,6 +72,13 @@ exports.view = async (req, res) => {
         ]
     });
 
+
+    const baremes = await Baremes.findAll({
+        include:{
+            model: Regles
+        }
+    });
+
     const deplacements = await Deplacements.findAll();
 
     const options = {
@@ -76,6 +86,7 @@ exports.view = async (req, res) => {
         title: 'Fiches',
         fiches: fiches,
         deplacements: deplacements,
+        baremes: baremes,
         user: user
     }
     res.render('pages/users/fiches', options)

@@ -43,8 +43,25 @@
                         <% dateVeh = new Date(fiche.Vehicule.annee); %>
                         <td> <%= fiche.Vehicule.marque %> <%= fiche.Vehicule.modele %> <%= dateVeh.getFullYear() %></td>
                         <td> <%= fiche.Deplacement.libelle %> </td>
-                        <td> <%= fiche.compteur_arriver - fiche.compteur_depart %> </td>
-                        <td> To Do </td>
+                        <% distance =  fiche.compteur_arriver - fiche.compteur_depart %> 
+                        <td> <%= distance %> </td>
+                        <% baremes.forEach(bareme => { %>
+                         <% dateB = new Date(bareme.dateBareme) %> 
+                         <% if (dateB.getFullYear() == dateVeh.getFullYear()) { %>
+                            <% bareme.Regles.forEach(regle => { %>
+                                <% if (regle.puissance <= fiche.Vehicule.puissance) { %>
+                                    <% if (distance <= 5000) { %>
+                                        <% indemnite = eval(`${distance} * ${regle.cinq}`) %>
+                                    <% } else if (distance > 20000) { %>
+                                        <% indemnite = eval(`${distance} * ${regle.vingt}`) %>
+                                    <% } else { %>
+                                        <% indemnite = eval(`${distance} * ${regle.cinq_vingt}`) %>
+                                    <% } %>
+                                <% } %>
+                            <% }) %>
+                         <% } %>
+                        <% }) %>
+                        <td> <%= Math.round(indemnite) %> € </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="action-ligne">
                                 <button type="button" data-id="<%=  fiche.id %>" class="btn btn-warning">
