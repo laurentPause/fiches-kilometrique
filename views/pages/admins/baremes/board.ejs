@@ -1,0 +1,90 @@
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="h4">
+            Regles <span class="ml-3 badge badge-primary" role="button" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-plus"></i> Ajouter</span>
+        </h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Chevaux fiscaux</th>
+                        <th>Jusqu'à 5000 km</th>
+                        <th>De 5001 km à 20000 km</th>
+                        <th>Au-delà de 20000 km</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(bareme.Regles.length > 0) {%>
+                    <% bareme.Regles.forEach(function(regle){ %>
+                    <tr>
+                        <td> <%= regle.puissance %> </td>
+                        <td> <%= regle.cinq %> </td>
+                        <td> <%= regle.cinq_vingt %> </td>
+                        <td> <%= regle.vingt %> </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  regle.id %>" class="btn btn-warning">
+                                    <a><i class="fas fa-edit"></i></a>
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="action-ligne">
+                                <button type="button" data-id="<%=  regle.id %>" class="btn btn-danger">
+                                    <a><i class="fas fa-trash"></i></i></a>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    <% } else{ %>
+                    <tr>
+                        <td class="text-center" colspan="6">Aucune entités associer</td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modalAdd" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="exampleModalLabel" class="modal-title">Ajouter une règle</h4>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddRegle" data-bareme="<%= bareme.id %> ">
+                    <div class="form-group">
+                        <label for="puissance-regle">Puissance</label>
+                        <input id="puissance-regle" class="form-control" type="number" name="puissance" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cinq-regle">Jusqu'à 5000 km</label>
+                        <input id="cinq-regle" class="form-control" type="text" name="cinq" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cinqVingt-regle">De 5001 km à 20000 km</label>
+                        <input id="cinqVingt-regle" class="form-control" type="text" name="cinqVingt" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vingt-regle">Au-delà de 20000 km</label>
+                        <input id="vingt-regle" class="form-control" type="text" name="vingt" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/regles.js"></script>

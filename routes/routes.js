@@ -41,6 +41,8 @@ exports.routes = (app) => {
     // Barémes 
     app.get('/baremes', connexion.verify, baremes.view);
     app.post('/baremes', connexion.verify, baremes.add);
+    app.get('/baremes/:id', connexion.verify, baremes.board);
+    app.post('/baremes/regles', connexion.verify, baremes.addRegle);
 
 
 
